@@ -29,4 +29,13 @@ Repository = "https://github.com/jeguzzi/RoboMaster-SDK.git"
 minimum-version = "build-system.requires"
 install.components = ["libmedia_codec"]
 wheel.exclude = ["__pycache__"]
-cmake.args = ["--preset default"]
+
+[[tool.scikit-build.overrides]]
+if.platform-system = "darwin"
+if.platform-machine = "arm64"
+wheel.tags = ["cp312-cp312-macosx_11_0_arm64"]
+
+[[tool.scikit-build.overrides]]
+if.platform-system = "darwin"
+if.platform-machine = "x86_64"
+wheel.tags = ["cp312-cp312-macosx_10_9_x86_64"]
