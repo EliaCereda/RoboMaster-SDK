@@ -1,0 +1,13 @@
+[package.build]
+backend = { name = "pixi-build-python", version = "0.5.*" }
+config = { compilers = ["c", "cxx"] }
+
+[package.build-dependencies]
+cmake = ">=3.26,<4"
+pkg-config = ">=0.29.2,<0.30"
+
+[package.host-dependencies]
+python = "*"
+scikit-build-core = ">=0.11"
+libopus = ">=1.6.1,<2"
+ffmpeg = ">=8.1.1,<9"
