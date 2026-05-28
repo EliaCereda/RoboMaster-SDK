@@ -91,10 +91,9 @@ public:
         if (!frame)
             throw CodecException("H264Decoder: av_frame_alloc failed!");
 
-        pkt = new AVPacket;
+        pkt = av_packet_alloc();
         if (!pkt)
             throw CodecException("H264Decoder: alloc AVPacket failed!");
-        av_init_packet(pkt);
     }
 
     ~H264Decoder() {
@@ -104,7 +103,7 @@ public:
         avcodec_free_context(&context);
         av_free(context);
         av_frame_free(&frame);
-        delete pkt;
+        av_packet_free(&pkt);
     }
 
     ssize_t parse(const unsigned char* in_data, ssize_t in_size) {
@@ -210,7 +209,8 @@ public:
         py::gil_scoped_release decode_release;
         num_consumed = decoder->parse((ubyte*)data_in, len);
         bool valid = false;
-        if (is_frame_available = decoder->is_frame_available()) {
+        is_frame_available = decoder->is_frame_available();
+        if (is_frame_available) {
             const auto &frame = decoder->decode_frame(valid);
             if(!valid) {
               py::gil_scoped_acquire decode_acquire;
