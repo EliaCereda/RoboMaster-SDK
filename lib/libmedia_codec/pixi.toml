@@ -10,4 +10,5 @@ pkg-config = ">=0.29.2,<0.30"
 python = "*"
 scikit-build-core = ">=0.11"
 libopus = ">=1.6.1,<2"
-ffmpeg = ">=8.1.1,<9"
+# ffmpeg 8.1.2+ is incompatible with ros2-distro-mutex 0.8.0. Hold until robostack updates.
+ffmpeg = ">=8.1.1,<8.1.2"
