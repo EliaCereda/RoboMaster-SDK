@@ -1,5 +1,5 @@
 [package.build]
-backend = { name = "pixi-build-python", version = "0.5.*" }
+backend = { name = "pixi-build-python", version = ">=0.5,<1.0" }
 config = { compilers = ["c", "cxx"] }
 
 [package.build-dependencies]
